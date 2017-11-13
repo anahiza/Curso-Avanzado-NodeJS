@@ -1,0 +1,23 @@
+{
+  "name": "platziverse-db",
+  "version": "1.0.0",
+  "description": "A simple IoT platform - DB Module",
+  "main": "index.js",
+  "scripts": {
+    "lint": "standard",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anahiza/platziverse.git"
+  },
+  "author": "Anahi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/anahiza/platziverse/issues"
+  },
+  "homepage": "https://github.com/anahiza/platziverse#readme",
+  "devDependencies": {
+    "standard": "^10.0.3"
+  }
+}
