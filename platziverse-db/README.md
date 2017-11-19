@@ -1,5 +1,5 @@
 # Platziverse-db
-##Usage
+#Usage
 
 ```js
 const setupDatabase = require('platziverse-db')
