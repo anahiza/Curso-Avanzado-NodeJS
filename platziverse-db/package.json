@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "standard",
     "setup": "DEBUG=platziverse:* node setup.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "DEBUG=platziverse:* ava test/ --verbose*"
   },
   "repository": {
     "type": "git",
@@ -19,11 +19,14 @@
   },
   "homepage": "https://github.com/anahiza/platziverse#readme",
   "devDependencies": {
+    "ava": "^0.23.0",
+    "sqlite3": "^3.1.13",
     "standard": "^10.0.3"
   },
   "dependencies": {
     "chalk": "^2.3.0",
     "debug": "^3.1.0",
+    "defaults": "^1.0.3",
     "inquirer": "^4.0.0",
     "pg": "^7.4.0",
     "pg-hstore": "^2.3.2",

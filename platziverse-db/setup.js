@@ -16,7 +16,7 @@ async function setup () {
       }
     ]
   )
-  if (!answer.setup){
+  if (!answer.setup) {
     return console.log('Nothing happened!')
   }
 
