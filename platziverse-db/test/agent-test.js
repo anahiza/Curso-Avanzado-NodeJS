@@ -1,3 +1,5 @@
+import { Agent } from 'https'
+
 'use strict'
 
 const test = require('ava')
@@ -25,6 +27,11 @@ test.beforeEach(async () => {
   AgentStub = {
     hasMany: sandbox.spy()
   }
+
+  // Model findById Stub
+  AgentStub.findById = sandbox.stub()
+  AgentStub.findById.withArgs(id).returns(Promise.resolve(agentFixtures.byId(id)))
+
   const setupDatabase = proxyquire('../', {
     './models/agent': () => AgentStub,
     './models/metric': () => MetricStub
@@ -49,5 +56,8 @@ test.serial('Setup', t => {
 
 test.serial('AgentFindById', async t => {
   let agent = await db.Agent.findById(id)
+  t.true(AgentStub.findById.called, 'Find by id should be called on model')
+  t.true(AgentStub.findById.calledOnce, 'FindbyId should be called once')
+  t.true(AgentStub.findById.calledWith(id), 'findbyId should be called with 1')
   t.deepEqual(agent, agentFixtures.byId(id), 'should be the same')
 })
