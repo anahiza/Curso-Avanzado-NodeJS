@@ -3,11 +3,14 @@
 const test = require('ava')
 const sinon = require('sinon')
 const proxyquire = require('proxyquire')
+const agentFixtures = require('./fixtures/agent')
 
 let db = null
 let config = {
   logging: function () {}
 }
+let id = 1
+let single = Object.assign({}, agentFixtures.single)
 
 let sandbox = null
 
@@ -42,4 +45,9 @@ test.serial('Setup', t => {
   t.true(AgentStub.hasMany.calledWith(MetricStub), 'Argument should be MetricModel')
   t.true(MetricStub.belongsTo.called, 'MetricModel.belongsTo was executed')
   t.true(MetricStub.belongsTo.calledWith(AgentStub), 'Argument should be the AgentModel')
+})
+
+test.serial('AgentFindById', async t => {
+  let agent = await db.Agent.findById(id)
+  t.deepEqual(agent, agentFixtures.byId(id), 'should be the same')
 })
