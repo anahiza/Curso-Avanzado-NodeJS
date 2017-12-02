@@ -5,7 +5,8 @@ const inquirer = require('inquirer')
 const chalk = require('chalk')
 const debug = require('debug')('platziverse:db:setup')
 
-const prompt = inquirer.createPromptModule()
+// const prompt =
+inquirer.createPromptModule()
 async function setup () {
   const answer = await inquirer.prompt(
     [
