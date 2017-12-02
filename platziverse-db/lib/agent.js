@@ -5,7 +5,7 @@ module.exports = function setupAgent (AgentModel) {
     return AgentModel.findById(id)
   }
 
-   function createOrUpdate(agent){
+   await function createOrUpdate(agent){
     const cond = {
       where: {
         uuid: agent.uuid
