@@ -69,12 +69,12 @@ test.beforeEach(async() => {
   metricUuidArgs.include[0].model = AgentStub
   typeUuidArgs.include[0].model = AgentStub
 
-  //Model findAll Stub
+  // Model findAll Stub
   MetricStub.findAll = sandbox.stub()
   MetricStub.findAll.withArgs().returns(Promise.resolve(metricFixtures.all))
   MetricStub.findAll.withArgs(metricUuidArgs).returns(Promise.resolve(metricFixtures.findByAgentUuid(uuid)))
   MetricStub.findAll.withArgs(typeUuidArgs).returns(Promise.resolve(metricFixtures.findByTypeAgentUuid(type, uuid)))
-  
+
   const setupDatabase = proxyquire('../', {
     './models/agent': () => AgentStub,
     './models/metric': () => MetricStub
@@ -92,16 +92,16 @@ test.serial('create', t => {
 })
 
 test.serial('Setup Metric', t => {
-    t.true(AgentStub.hasMany.called, 'AgentModel.hasMany was executed')
-    t.true(AgentStub.hasMany.calledWith(MetricStub), 'Argument should be the MetricStub')
-    t.true(MetricStub.belongsTo.called, 'MetricModel.belongsTo was executed')
-    t.true(MetricStub.belongsTo.calledWith(AgentStub), 'Argument should be the AgentModel')
+  t.true(AgentStub.hasMany.called, 'AgentModel.hasMany was executed')
+  t.true(AgentStub.hasMany.calledWith(MetricStub), 'Argument should be the MetricStub')
+  t.true(MetricStub.belongsTo.called, 'MetricModel.belongsTo was executed')
+  t.true(MetricStub.belongsTo.calledWith(AgentStub), 'Argument should be the AgentModel')
 })
 
 test.serial('Metric#findByAgentUuid', async t => {
-    let metric = await db.Metric.findByAgentUuid(uuid)
-    t.true(MetricStub.findAll.called, 'findAll should be called on model')
-    t.true(MetricStub.findAll.calledOnce, 'findAll should be called once')
-    t.true(MetricStub.findAll.calledWith(metricUuidArgs), 'findAll should be called with metric args')
-    t.deepEqual(metric, metricFixtures.findByAgentUuid(uuid), 'should be the same')
+  let metric = await db.Metric.findByAgentUuid(uuid)
+  t.true(MetricStub.findAll.called, 'findAll should be called on model')
+  t.true(MetricStub.findAll.calledOnce, 'findAll should be called once')
+  t.true(MetricStub.findAll.calledWith(metricUuidArgs), 'findAll should be called with metric args')
+  t.deepEqual(metric, metricFixtures.findByAgentUuid(uuid), 'should be the same')
 })

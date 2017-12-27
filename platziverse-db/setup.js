@@ -4,21 +4,30 @@ const db = require('./')
 const inquirer = require('inquirer')
 const chalk = require('chalk')
 const debug = require('debug')('platziverse:db:setup')
+let automaticSetup = false
 
 // const prompt =
 inquirer.createPromptModule()
 async function setup () {
-  const answer = await inquirer.prompt(
-    [
-      {
-        type: 'confirm',
-        name: 'setup',
-        message: 'This will destroy your database, are you sure?'
-      }
-    ]
+  process.argv.forEach(e => {
+    console.log(e)
+    if (e === '--autoSetup') {
+      automaticSetup = true
+    }
+  })
+  if (automaticSetup === false) {
+    const answer = await inquirer.prompt(
+      [
+        {
+          type: 'confirm',
+          name: 'setup',
+          message: 'This will destroy your database, are you sure?'
+        }
+      ]
   )
-  if (!answer.setup) {
-    return console.log('Nothing happened!')
+    if (!answer.setup) {
+      return console.log('Nothing happened!')
+    }
   }
 
   const config = {

@@ -2,7 +2,6 @@
 
 const agentFixtures = require('./agent')
 
-
 const metric = {
   id: 1,
   agentId: 1,
@@ -11,7 +10,6 @@ const metric = {
   createdAt: new Date(),
   agent: agentFixtures.byId(1)
 }
-
 
 const newMetric = {
   type: 'Hard Drive',
