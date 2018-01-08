@@ -61,17 +61,17 @@ class PlatziverseAgent extends EventEmitter {
               timestamp: new Date().getTime()
             }
 
-            for (let [metric, fn] of this._metrics) {
-              if (fn.legnth == 1) {
+            for (let [ metric, fn ] of this._metrics) {
+              if (fn.legnth === 1) {
                 fn = util.promisify(fn)
               }
               message.metrics.push({
-                type: metrics,
+                type: metric,
                 value: await Promise.resolve(fn())
               })
             }
             debug('Sending', message)
-            this._client.pusblish('agent/messagge', JSON.stringify(message))
+            this._client.publish('agent/messagge', JSON.stringify(message))
             this.emit('message', message)
           }
         }, opts.inverval)
@@ -85,7 +85,7 @@ class PlatziverseAgent extends EventEmitter {
           case 'agent/connected':
           case 'agent/disconnected':
           case 'agent/message':
-            broadcast = payload && payload.agent && payload.agent.uuid != this._agentId
+            broadcast = payload && payload.agent && payload.agent.uuid !== this._agentId
             break
         }
         if (broadcast) {

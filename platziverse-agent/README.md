@@ -37,6 +37,9 @@ agent.on('agent/connected', handler)
 agent.on('agent/message', handler)
 agent.on('agent/disconnected', handler)
 
+function handler(payload){
+    console.log(payload)
+}
 setTimeout(() => agent.disconnect(), 2000)
 
 ```
