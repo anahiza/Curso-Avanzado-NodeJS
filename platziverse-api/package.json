@@ -1,0 +1,23 @@
+{
+  "name": "platziverse-api",
+  "version": "1.0.0",
+  "description": "A simple IoT Platform API",
+  "main": "server.js",
+  "scripts": {
+    "lint": "standard",
+    "start-dev": "DEBUG=platziverse:* nodemon server.js",
+    "start": "NODE_ENV=production node server.js"
+  },
+  "author": "Anahí",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "nodemon": "^1.14.11",
+    "standard": "^10.0.3"
+  },
+  "dependencies": {
+    "chalk": "^2.3.0",
+    "debug": "^3.1.0",
+    "express": "^4.16.2"
+  }
+}
