@@ -6,14 +6,17 @@
   "scripts": {
     "lint": "standard",
     "start-dev": "DEBUG=platziverse:* nodemon server.js",
-    "start": "NODE_ENV=production node server.js"
+    "start": "NODE_ENV=production node server.js",
+    "test": "DEBUG=platziverse:* ava test/ --verbose"
   },
   "author": "Anahí",
   "license": "MIT",
   "private": true,
   "devDependencies": {
+    "ava": "^0.24.0",
     "nodemon": "^1.14.11",
-    "standard": "^10.0.3"
+    "standard": "^10.0.3",
+    "supertest": "^3.0.0"
   },
   "dependencies": {
     "chalk": "^2.3.0",
