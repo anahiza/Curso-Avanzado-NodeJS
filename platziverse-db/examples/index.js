@@ -11,7 +11,7 @@ async function run () {
 
   const {Agent, Metric} = await db(config).catch(handleFatalError)
   const agent = await Agent.createOrUpdate({
-    uuid: 'yyy-yyy-yyx',
+    uuid: 'yyy-yyy-yyy',
     name: 'test',
     username: 'test',
     hostname: 'test',
@@ -31,7 +31,7 @@ async function run () {
 
   const metric = await Metric.create(agent.uuid, {
     type: 'memory',
-    value: '300'
+    value: '350'
   }).catch(handleFatalError)
   console.log('--metric---')
   console.log(metric)

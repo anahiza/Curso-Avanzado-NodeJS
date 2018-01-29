@@ -30,7 +30,7 @@ module.exports = async function (config) {
   await sequelize.authenticate()
 
   if (config.setup) {
-    await sequelize.sync({force: true})
+    await sequelize.sync({force: false})
   }
 
   const Agent = setupAgent(AgentModel)

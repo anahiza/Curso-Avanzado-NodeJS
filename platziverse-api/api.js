@@ -23,7 +23,7 @@ api.use('*', async (req, res, next) => {
 })
 
 api.get('/agents', async (req, res, next) => {
-  debug('A request has come to agents')
+  debug('A request has come to /agents')
   let agents = []
   try {
     agents = await Agent.findConnected()
