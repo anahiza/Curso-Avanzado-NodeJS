@@ -10,6 +10,7 @@ let server = null
 let dbStub = null
 let AgentStub = {}
 let MetricStub = {}
+let uuid = 'yyy-yyy-yyy'
 
 test.beforeEach(async () => {
   sandbox = sinon.sandbox.create()
@@ -21,6 +22,8 @@ test.beforeEach(async () => {
 
   AgentStub.findConnected = sandbox.stub()
   AgentStub.findConnected.returns(Promise.resolve(agentFixtures.connected))
+  AgentStub.findByUuid = sandbox.stub()
+  AgentStub.findByUuid.returns(Promise.resolve(agentFixtures.byUuid(uuid)))
 
   const api = proxyquire('../api', {
     'platziverse-db': dbStub
@@ -35,7 +38,21 @@ test.afterEach( async() => {
   sandbox && sinon.sandbox.restore()
 })
 
-test.serial.todo('/api/agent/:uuid')
+test.serial.cb('/api/agent/:uuid', t => {
+  request(server)
+  .get(`/api/agent/${uuid}`)
+  .expect(200)
+  .expect('Content-Type', /json/)
+  .end((err, res) => {
+    t.falsy(err, 'should not return an error')
+    let body = JSON.stringify(res.body)
+    let expected = JSON.stringify(agentFixtures.byUuid(uuid))
+    t.deepEqual(body, expected, 'response body should be the expected')
+    t.end()
+  })
+})
+
+
 test.serial.todo('/api/agent/:uuid - not found')
 
 test.serial.todo('/api/metrics/:uuid')
