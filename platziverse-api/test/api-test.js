@@ -16,6 +16,8 @@ let AgentStub = {}
 let MetricStub = {}
 let uuid = 'yyy-yyy-yyy'
 let token = null
+let falsetoken = 'aaaaaaaaaaaaaa'
+let wronguuid = 'aaa-aaa-aaa'
 
 test.beforeEach(async () => {
   sandbox = sinon.sandbox.create()
@@ -59,8 +61,29 @@ test.serial.cb('/api/agent/:uuid', t => {
   })
 })
 
-test.serial.todo('/api/agents - not authorized')
-test.serial.todo('/api/agent/:uuid - not found')
+test.serial.cb('/api/agents - not authorized', t => {
+  request(server)
+  .get('/api/agents')
+  .set('Authorization', `Bearer ${falsetoken}`)
+  .expect(404)
+  .expect('Content-Type', /json/)
+  .end((err, res) => {
+    t.truthy(err, 'should return an error')
+    t.end()
+  })
+})
+
+test.serial.cb('/api/agent/:uuid - not found', t => {
+  request(server)
+  .get(`/api/agent/${wronguuid}`)
+  .set('Authorization', `Bearer ${token}`)
+  .expect(200)
+  .expect('Content-Type', /json/)
+  .end((err, res) => {
+    t.truthy(err, 'should return error')
+    t.end()
+  })
+})
 
 test.serial.todo('/api/metrics/:uuid')
 test.serial.todo('/api/metrics/:uuid - not found')
