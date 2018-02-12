@@ -26,7 +26,7 @@ test.beforeEach(async () => {
     Agent: AgentStub,
     Metric: MetricStub
   }))
-  token = await sign({admin: true, username: 'platzi'}, config.auth.secret)
+  token = await sign({'usename': 'anahi', 'permissions': ['metrics: read'], 'admin': true},'platzi'}, config.auth.secret)
 
   AgentStub.findConnected = sandbox.stub()
   AgentStub.findConnected.returns(Promise.resolve(agentFixtures.connected))
