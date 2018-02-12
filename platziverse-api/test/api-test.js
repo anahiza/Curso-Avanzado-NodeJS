@@ -4,6 +4,10 @@ const request = require('supertest')
 const sinon = require('sinon')
 const proxyquire = require('proxyquire')
 const agentFixtures = require('./fixtures/agent')
+const auth = require('../auth')
+const util = require('util')
+const sign = util.promisify(auth.sign)
+const config = require('../config')
 
 let sandbox = null
 let server = null
@@ -11,6 +15,7 @@ let dbStub = null
 let AgentStub = {}
 let MetricStub = {}
 let uuid = 'yyy-yyy-yyy'
+let token = null
 
 test.beforeEach(async () => {
   sandbox = sinon.sandbox.create()
@@ -19,6 +24,7 @@ test.beforeEach(async () => {
     Agent: AgentStub,
     Metric: MetricStub
   }))
+  token = await sign({admin: true, username: 'platzi'}, config.auth.secret)
 
   AgentStub.findConnected = sandbox.stub()
   AgentStub.findConnected.returns(Promise.resolve(agentFixtures.connected))
@@ -34,13 +40,14 @@ test.beforeEach(async () => {
   })
 })
 
-test.afterEach( async() => {
+test.afterEach(async() => {
   sandbox && sinon.sandbox.restore()
 })
 
 test.serial.cb('/api/agent/:uuid', t => {
   request(server)
   .get(`/api/agent/${uuid}`)
+  .set('Authorization', `Bearer ${token}`)
   .expect(200)
   .expect('Content-Type', /json/)
   .end((err, res) => {
@@ -52,7 +59,7 @@ test.serial.cb('/api/agent/:uuid', t => {
   })
 })
 
-
+test.serial.todo('/api/agents - not authorized')
 test.serial.todo('/api/agent/:uuid - not found')
 
 test.serial.todo('/api/metrics/:uuid')
@@ -64,6 +71,7 @@ test.serial.todo('/api/metrics/:uuid/:type --not found')
 test.serial.cb('/api/agents', t => {
   request(server)
         .get('/api/agents')
+        .set('Authorization', `Bearer ${token}`)
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
