@@ -1,0 +1,22 @@
+{
+  "name": "platziverse-web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "NODE_ENV=production node server.js",
+    "start-dev": "DEBUG=platizverse:* nodemon server.js",
+    "lint": "standard"
+  },
+  "author": "Ing Anahi Zentella",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^1.14.12",
+    "standard": "^10.0.3"
+  },
+  "dependencies": {
+    "chalk": "^2.3.1",
+    "debug": "^3.1.0",
+    "express": "^4.16.2"
+  }
+}
