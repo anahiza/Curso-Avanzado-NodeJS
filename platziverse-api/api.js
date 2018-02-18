@@ -28,7 +28,7 @@ api.get('/agents', auth(config.auth), async (req, res, next) => {
   debug('A request has come to /agents')
   const {user} = req
   if (!user || !user.username) {
-    return next(new Error('Noy authorized'))
+    return next(new Error('Not authorized'))
   }
   let agents = []
   try {
