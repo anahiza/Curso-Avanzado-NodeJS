@@ -9,7 +9,7 @@ function pipe (source, target) {
     emit.apply(source, arguments)
     target.emit.apply(target, arguments)
     return source
-  }  
+  }
 }
 
 module.exports = { pipe }
