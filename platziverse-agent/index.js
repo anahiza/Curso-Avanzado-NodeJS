@@ -101,7 +101,7 @@ class PlatziverseAgent extends EventEmitter {
     if (this._started) {
       clearInterval(this._timer)
       this._started = false
-      this.emmit('disconnected', this._agentId)
+      this.emit('disconnected', this._agentId)
       this._client.end()
     }
   }

@@ -1,7 +1,7 @@
 const PlatziverseAgent = require('../')
 const agent = new PlatziverseAgent({
   name: 'myapp',
-  username: 'admin',
+  username: 'anahi',
   interval: 2000
 })
 
@@ -20,7 +20,6 @@ agent.addMetric('callbackMetric', function getRandomCallback (callback) {
 })
 
 agent.connect()
-
 
 agent.on('connected', handler)
 agent.on('disconnected', handler)
