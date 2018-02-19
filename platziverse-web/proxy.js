@@ -18,11 +18,11 @@ api.get('/agents', async (req, res, next) => {
   }
   let result
   try {
-    result = await request(options)
+    result = await request(opts)
   } catch (error) {
     return next(error)
   }
-  res.send(res)
+  res.send(result)
 })
 
 api.get('/agent/:uuid', (req, res) => {
