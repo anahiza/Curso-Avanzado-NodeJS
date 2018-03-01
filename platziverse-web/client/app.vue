@@ -1,8 +1,8 @@
 <template>
   <div>
     <agent uuid="yyy"></agent>
-    <metric type="promiseMetric" 
-      uuid="e6658a7d-c68e-4f2c-8f3c-93e18e08544b"
+    <metric type="rss" 
+      uuid="b2de0c5b-f4a4-44c0-a57a-864c0a1a2aa9"
       :socket="socket">
       
       </metric>

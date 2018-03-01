@@ -75,7 +75,7 @@ server.on('published', async (packet, client) => {
   switch (packet.topic) {
     case 'agent/connected':
     case 'agent/disconnected':
-      debug(`Payload: ${packet.payload}}`)
+      debug(`Payload: ${packet.payload}`)
       break
     case 'agent/message':
       debug(`Payload: ${packet.payload}`)
@@ -85,9 +85,10 @@ server.on('published', async (packet, client) => {
         let agent
         try {
           agent = await Agent.createOrUpdate(payload.agent)
-        } catch (error) {
-          return handleError(error)
+        } catch (e) {
+          return handleError(e)
         }
+
         debug(`Agent ${agent.uuid} saved`)
 
         // Notify Agent is Connected
@@ -106,7 +107,7 @@ server.on('published', async (packet, client) => {
             })
           })
         }
-        // Almacenar métricas
+        // Store Metrics
         for (let metric of payload.metrics) {
           let m
           try {
@@ -117,7 +118,6 @@ server.on('published', async (packet, client) => {
           debug(`Metric ${m.id} saved on agent ${agent.uuid}`)
         }
       }
-
       break
   }
 })

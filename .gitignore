@@ -36,6 +36,9 @@ build/Release
 node_modules/
 jspm_packages/
 platziverse-db/node_modules/
+platziverse-api/node_modules/
+platziverse-web/node_modules/
+platziverse-mqtt/node_modules/
 
 # Typescript v1 declaration files
 typings/

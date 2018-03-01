@@ -60,7 +60,7 @@ api.get('/agent/:uuid', async (req, res, next) => {
   res.send(agent)
 })
 
-api.get('/metrics/:uuid', auth(config.auth), guard.check(['metrics: read']), async (req, res, next) => {
+api.get('/metrics/:uuid', auth(config.auth), guard.check(['metrics:read']), async (req, res, next) => {
   const { uuid } = req.params
   debug(`request to /metrics/${uuid}`)
   let metrics = []
