@@ -51,12 +51,14 @@ module.exports = {
   methods: {
     async initialize() {
       const { uuid, type } = this
+      console.log(`UUID: ${uuid} and ${type}`)
       this.color = randomColor.getColor()
       const options = {
         method: 'GET',
         url: `http://localhost:8080/metrics/${uuid}/${type}`,
         json: true
       }
+      console.log(options)
 
       let result
       try {
@@ -89,6 +91,7 @@ module.exports = {
 
     startRealtime() {
       const { type, uuid, socket } = this
+      console.log(type, uuid, socket)
       socket.on('agent/message', payload => {
         console.log(payload)
         if(payload.agent.uuid === uuid){
