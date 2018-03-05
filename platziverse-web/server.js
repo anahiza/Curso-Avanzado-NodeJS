@@ -24,8 +24,6 @@ app.use('/', proxy)
 
 io.on('connect', socket => {
   debug(`Connected ${socket.id}`)
-  console.log(`Connected ${socket.id} and ${agent._agentId}`)
-
   pipe(agent, socket)
 })
 

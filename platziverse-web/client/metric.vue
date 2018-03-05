@@ -73,8 +73,10 @@ module.exports = {
 
       if (Array.isArray(result)){
         result.forEach(m => {
+          console.log(m)
           labels.push(moment(m.createdAt).format("HH:mm:ss"))
           data.push(m.value)
+          console.log(data)
         })
       }
       this.datacollection = {

@@ -112,6 +112,7 @@ server.on('published', async (packet, client) => {
           let m
           try {
             m = await Metric.create(agent.uuid, metric)
+            debug(`Storing ${m}`)
           } catch (e) {
             return handleError(e)
           }
