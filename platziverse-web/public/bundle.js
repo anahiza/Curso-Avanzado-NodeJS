@@ -126,8 +126,9 @@ module.exports = {
 
               case 15:
                 _this2.metrics = metrics;
+                _this2.startRealtime();
 
-              case 16:
+              case 17:
               case 'end':
                 return _context2.stop();
             }
@@ -244,7 +245,7 @@ module.exports = {
               case 6:
                 result = _context.sent;
 
-                console.log("request app vue recibido");
+                console.log("request app vue recibido Consultando Agentes");
                 _context.next = 15;
                 break;
 
@@ -442,8 +443,8 @@ module.exports = {
           var labels = _this2.datacollection.labels;
           var data = _this2.datacollection.datasets[0].data;
 
-          var lenght = labels.lenght || data.lenght;
-          if (lenght >= 20) {
+          var length = labels.length || data.length;
+          if (length >= 20) {
             labels.shift();
             data.shift();
           }

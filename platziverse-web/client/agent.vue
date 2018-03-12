@@ -140,7 +140,7 @@ module.exports = {
         return
       }
       this.metrics = metrics
-      //this.startRealtime()
+      this.startRealtime()
     },
 
     startRealtime(){

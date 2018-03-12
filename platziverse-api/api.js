@@ -81,7 +81,7 @@ api.get('/metrics/:uuid/:type', async (req, res, next) => {
   let metrics = []
 
   try {
-    metrics = await Metric.findByTypeUuid(uuid)
+    metrics = await Metric.findByTypeAgentUuid(uuid)
   } catch (error) {
     return next(error)
   }

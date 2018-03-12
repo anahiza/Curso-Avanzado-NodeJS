@@ -47,7 +47,7 @@ module.exports = {
       let result
       try {
         result = await request(options)
-        console.log("request app vue recibido")
+        console.log("request app vue recibido Consultando Agentes")
       } catch (e) {
         console.log(e)
         this.error = e.error.error

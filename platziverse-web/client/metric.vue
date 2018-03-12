@@ -103,8 +103,8 @@ module.exports = {
           const labels = this.datacollection.labels
           const data = this.datacollection.datasets[0].data
           
-          const lenght = labels.lenght || data.lenght
-          if (lenght >= 20){
+          const length = labels.length || data.length
+          if (length >= 20){
             labels.shift()
             data.shift()
 

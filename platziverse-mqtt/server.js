@@ -79,9 +79,12 @@ server.on('published', async (packet, client) => {
       break
     case 'agent/message':
       debug(`Payload: ${packet.payload}`)
+
       const payload = parsePayload(packet.payload)
+
       if (payload) {
         payload.agent.connected = true
+
         let agent
         try {
           agent = await Agent.createOrUpdate(payload.agent)
@@ -112,7 +115,6 @@ server.on('published', async (packet, client) => {
           let m
           try {
             m = await Metric.create(agent.uuid, metric)
-            debug(`Storing ${m}`)
           } catch (e) {
             return handleError(e)
           }
