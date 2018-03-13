@@ -165,9 +165,9 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   module.hot.accept()
   module.hot.dispose(__vueify_style_dispose__)
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-43f65e94", __vue__options__)
+    hotAPI.createRecord("data-v-a3f185ea", __vue__options__)
   } else {
-    hotAPI.reload("data-v-43f65e94", __vue__options__)
+    hotAPI.reload("data-v-a3f185ea", __vue__options__)
   }
 })()}
 },{"babel-runtime/helpers/asyncToGenerator":34,"babel-runtime/regenerator":35,"request-promise-native":457,"vue":550,"vue-hot-reload-api":549,"vueify/lib/insert-css":551}],2:[function(require,module,exports){
@@ -293,9 +293,9 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   module.hot.accept()
   module.hot.dispose(__vueify_style_dispose__)
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-a327cd20", __vue__options__)
+    hotAPI.createRecord("data-v-7d4029a7", __vue__options__)
   } else {
-    hotAPI.reload("data-v-a327cd20", __vue__options__)
+    hotAPI.reload("data-v-7d4029a7", __vue__options__)
   }
 })()}
 },{"babel-runtime/helpers/asyncToGenerator":34,"babel-runtime/regenerator":35,"request-promise-native":457,"socket.io-client":480,"vue":550,"vue-hot-reload-api":549,"vueify/lib/insert-css":551}],4:[function(require,module,exports){
@@ -479,9 +479,9 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   module.hot.accept()
   module.hot.dispose(__vueify_style_dispose__)
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5f8d4bb1", __vue__options__)
+    hotAPI.createRecord("data-v-37983c1a", __vue__options__)
   } else {
-    hotAPI.reload("data-v-5f8d4bb1", __vue__options__)
+    hotAPI.reload("data-v-37983c1a", __vue__options__)
   }
 })()}
 },{"./line-chart":4,"babel-runtime/helpers/asyncToGenerator":34,"babel-runtime/regenerator":35,"moment":376,"random-material-color":424,"request-promise-native":457,"vue":550,"vue-hot-reload-api":549,"vueify/lib/insert-css":551}],6:[function(require,module,exports){
@@ -41148,30 +41148,36 @@ utils.intFromLE = intFromLE;
 
 },{"bn.js":41,"minimalistic-assert":374,"minimalistic-crypto-utils":375}],250:[function(require,module,exports){
 module.exports={
-  "_from": "elliptic@^6.0.0",
+  "_args": [
+    [
+      "elliptic@6.4.0",
+      "/home/anahi/Documents/Git/Curso-Avanzado-NodeJS/platziverse-web"
+    ]
+  ],
+  "_development": true,
+  "_from": "elliptic@6.4.0",
   "_id": "elliptic@6.4.0",
   "_inBundle": false,
   "_integrity": "sha1-ysmvh2LIWDYYcAPI3+GT5eLq5d8=",
   "_location": "/elliptic",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "elliptic@^6.0.0",
+    "raw": "elliptic@6.4.0",
     "name": "elliptic",
     "escapedName": "elliptic",
-    "rawSpec": "^6.0.0",
+    "rawSpec": "6.4.0",
     "saveSpec": null,
-    "fetchSpec": "^6.0.0"
+    "fetchSpec": "6.4.0"
   },
   "_requiredBy": [
     "/browserify-sign",
     "/create-ecdh"
   ],
   "_resolved": "https://registry.npmjs.org/elliptic/-/elliptic-6.4.0.tgz",
-  "_shasum": "cac9af8762c85836187003c8dfe193e5e2eae5df",
-  "_spec": "elliptic@^6.0.0",
-  "_where": "/home/anahi/Documents/Git/Curso Avanzado Node/platziverse-web/node_modules/browserify-sign",
+  "_spec": "6.4.0",
+  "_where": "/home/anahi/Documents/Git/Curso-Avanzado-NodeJS/platziverse-web",
   "author": {
     "name": "Fedor Indutny",
     "email": "fedor@indutny.com"
@@ -41179,7 +41185,6 @@ module.exports={
   "bugs": {
     "url": "https://github.com/indutny/elliptic/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "bn.js": "^4.4.0",
     "brorand": "^1.0.1",
@@ -41189,7 +41194,6 @@ module.exports={
     "minimalistic-assert": "^1.0.0",
     "minimalistic-crypto-utils": "^1.0.0"
   },
-  "deprecated": false,
   "description": "EC cryptography",
   "devDependencies": {
     "brfs": "^1.4.3",
@@ -97456,30 +97460,35 @@ Store.prototype.getAllCookies = function(cb) {
 
 },{}],532:[function(require,module,exports){
 module.exports={
-  "_from": "tough-cookie@~2.3.3",
+  "_args": [
+    [
+      "tough-cookie@2.3.3",
+      "/home/anahi/Documents/Git/Curso-Avanzado-NodeJS/platziverse-web"
+    ]
+  ],
+  "_from": "tough-cookie@2.3.3",
   "_id": "tough-cookie@2.3.3",
   "_inBundle": false,
   "_integrity": "sha1-C2GKVWW23qkL80JdBNVe3EdadWE=",
   "_location": "/tough-cookie",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "tough-cookie@~2.3.3",
+    "raw": "tough-cookie@2.3.3",
     "name": "tough-cookie",
     "escapedName": "tough-cookie",
-    "rawSpec": "~2.3.3",
+    "rawSpec": "2.3.3",
     "saveSpec": null,
-    "fetchSpec": "~2.3.3"
+    "fetchSpec": "2.3.3"
   },
   "_requiredBy": [
     "/request",
     "/request-promise-native"
   ],
   "_resolved": "https://registry.npmjs.org/tough-cookie/-/tough-cookie-2.3.3.tgz",
-  "_shasum": "0b618a5565b6dea90bf3425d04d55edc475a7561",
-  "_spec": "tough-cookie@~2.3.3",
-  "_where": "/home/anahi/Documents/Git/Curso Avanzado Node/platziverse-web/node_modules/request",
+  "_spec": "2.3.3",
+  "_where": "/home/anahi/Documents/Git/Curso-Avanzado-NodeJS/platziverse-web",
   "author": {
     "name": "Jeremy Stashewsky",
     "email": "jstashewsky@salesforce.com"
@@ -97487,7 +97496,6 @@ module.exports={
   "bugs": {
     "url": "https://github.com/salesforce/tough-cookie/issues"
   },
-  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Alexander Savin"
@@ -97511,7 +97519,6 @@ module.exports={
   "dependencies": {
     "punycode": "^1.4.1"
   },
-  "deprecated": false,
   "description": "RFC6265 Cookies and Cookie Jar for node.js",
   "devDependencies": {
     "async": "^1.4.2",

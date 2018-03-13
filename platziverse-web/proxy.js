@@ -19,8 +19,8 @@ api.get('/agents', async (req, res, next) => {
   let result
   try {
     result = await request(opts)
-  } catch (error) {
-    return next(error)
+  } catch (e) {
+    return next(new Error(e.error.error))
   }
   res.send(result)
 })
