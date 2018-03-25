@@ -49,36 +49,35 @@ module.exports = {
   },
 
   methods: {
-    async initialize() {
+       async initialize() {
       const { uuid, type } = this
-      console.log(`UUID: ${uuid} and ${type}`)
+
       this.color = randomColor.getColor()
+
       const options = {
         method: 'GET',
         url: `http://localhost:8080/metrics/${uuid}/${type}`,
         json: true
       }
-      console.log(options)
 
       let result
       try {
         result = await request(options)
-      } catch (error) {
-        this.error = error.error.error
-        return 
+      } catch (e) {
+        this.error = e.error.error
+        return
       }
 
       const labels = []
       const data = []
 
-      if (Array.isArray(result)){
+      if (Array.isArray(result)) {
         result.forEach(m => {
-          console.log(m)
-          labels.push(moment(m.createdAt).format("HH:mm:ss"))
+          labels.push(moment(m.createdAt).format('HH:mm:ss'))
           data.push(m.value)
-          console.log(data)
         })
       }
+
       this.datacollection = {
         labels,
         datasets: [{
@@ -91,27 +90,29 @@ module.exports = {
       this.startRealtime()
     },
 
-    startRealtime() {
+    startRealtime () {
       const { type, uuid, socket } = this
-      console.log(type, uuid, socket)
+
       socket.on('agent/message', payload => {
-        console.log(payload)
-        if(payload.agent.uuid === uuid){
+        if (payload.agent.uuid === uuid) {
           const metric = payload.metrics.find(m => m.type === type)
 
-          //copy current values
+          // Copy current values
           const labels = this.datacollection.labels
           const data = this.datacollection.datasets[0].data
-          
+
+          // Remove first element if length > 20
           const length = labels.length || data.length
-          if (length >= 20){
+
+          if (length >= 20) {
             labels.shift()
             data.shift()
-
           }
 
+          // Add new elements
           labels.push(moment(metric.createdAt).format('HH:mm:ss'))
           data.push(metric.value)
+
           this.datacollection = {
             labels,
             datasets: [{

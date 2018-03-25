@@ -165,9 +165,9 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   module.hot.accept()
   module.hot.dispose(__vueify_style_dispose__)
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-a3f185ea", __vue__options__)
+    hotAPI.createRecord("data-v-43f65e94", __vue__options__)
   } else {
-    hotAPI.reload("data-v-a3f185ea", __vue__options__)
+    hotAPI.reload("data-v-43f65e94", __vue__options__)
   }
 })()}
 },{"babel-runtime/helpers/asyncToGenerator":34,"babel-runtime/regenerator":35,"request-promise-native":457,"vue":550,"vue-hot-reload-api":549,"vueify/lib/insert-css":551}],2:[function(require,module,exports){
@@ -293,9 +293,9 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   module.hot.accept()
   module.hot.dispose(__vueify_style_dispose__)
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7d4029a7", __vue__options__)
+    hotAPI.createRecord("data-v-a327cd20", __vue__options__)
   } else {
-    hotAPI.reload("data-v-7d4029a7", __vue__options__)
+    hotAPI.reload("data-v-a327cd20", __vue__options__)
   }
 })()}
 },{"babel-runtime/helpers/asyncToGenerator":34,"babel-runtime/regenerator":35,"request-promise-native":457,"socket.io-client":480,"vue":550,"vue-hot-reload-api":549,"vueify/lib/insert-css":551}],4:[function(require,module,exports){
@@ -366,46 +366,43 @@ module.exports = {
               case 0:
                 uuid = _this.uuid, type = _this.type;
 
-                console.log('UUID: ' + uuid + ' and ' + type);
+
                 _this.color = randomColor.getColor();
+
                 options = {
                   method: 'GET',
                   url: 'http://localhost:8080/metrics/' + uuid + '/' + type,
                   json: true
                 };
-
-                console.log(options);
-
                 result = void 0;
-                _context.prev = 6;
-                _context.next = 9;
+                _context.prev = 4;
+                _context.next = 7;
                 return request(options);
 
-              case 9:
+              case 7:
                 result = _context.sent;
-                _context.next = 16;
+                _context.next = 14;
                 break;
 
-              case 12:
-                _context.prev = 12;
-                _context.t0 = _context['catch'](6);
+              case 10:
+                _context.prev = 10;
+                _context.t0 = _context['catch'](4);
 
                 _this.error = _context.t0.error.error;
                 return _context.abrupt('return');
 
-              case 16:
+              case 14:
                 labels = [];
                 data = [];
 
 
                 if (Array.isArray(result)) {
                   result.forEach(function (m) {
-                    console.log(m);
-                    labels.push(moment(m.createdAt).format("HH:mm:ss"));
+                    labels.push(moment(m.createdAt).format('HH:mm:ss'));
                     data.push(m.value);
-                    console.log(data);
                   });
                 }
+
                 _this.datacollection = {
                   labels: labels,
                   datasets: [{
@@ -417,12 +414,12 @@ module.exports = {
 
                 _this.startRealtime();
 
-              case 21:
+              case 19:
               case 'end':
                 return _context.stop();
             }
           }
-        }, _callee, _this, [[6, 12]]);
+        }, _callee, _this, [[4, 10]]);
       }))();
     },
     startRealtime: function startRealtime() {
@@ -432,9 +429,8 @@ module.exports = {
           uuid = this.uuid,
           socket = this.socket;
 
-      console.log(type, uuid, socket);
+
       socket.on('agent/message', function (payload) {
-        console.log(payload);
         if (payload.agent.uuid === uuid) {
           var metric = payload.metrics.find(function (m) {
             return m.type === type;
@@ -444,6 +440,7 @@ module.exports = {
           var data = _this2.datacollection.datasets[0].data;
 
           var length = labels.length || data.length;
+
           if (length >= 20) {
             labels.shift();
             data.shift();
@@ -451,6 +448,7 @@ module.exports = {
 
           labels.push(moment(metric.createdAt).format('HH:mm:ss'));
           data.push(metric.value);
+
           _this2.datacollection = {
             labels: labels,
             datasets: [{
@@ -479,9 +477,9 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   module.hot.accept()
   module.hot.dispose(__vueify_style_dispose__)
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-37983c1a", __vue__options__)
+    hotAPI.createRecord("data-v-5f8d4bb1", __vue__options__)
   } else {
-    hotAPI.reload("data-v-37983c1a", __vue__options__)
+    hotAPI.reload("data-v-5f8d4bb1", __vue__options__)
   }
 })()}
 },{"./line-chart":4,"babel-runtime/helpers/asyncToGenerator":34,"babel-runtime/regenerator":35,"moment":376,"random-material-color":424,"request-promise-native":457,"vue":550,"vue-hot-reload-api":549,"vueify/lib/insert-css":551}],6:[function(require,module,exports){
@@ -41148,36 +41146,30 @@ utils.intFromLE = intFromLE;
 
 },{"bn.js":41,"minimalistic-assert":374,"minimalistic-crypto-utils":375}],250:[function(require,module,exports){
 module.exports={
-  "_args": [
-    [
-      "elliptic@6.4.0",
-      "/home/anahi/Documents/Git/Curso-Avanzado-NodeJS/platziverse-web"
-    ]
-  ],
-  "_development": true,
-  "_from": "elliptic@6.4.0",
+  "_from": "elliptic@^6.0.0",
   "_id": "elliptic@6.4.0",
   "_inBundle": false,
   "_integrity": "sha1-ysmvh2LIWDYYcAPI3+GT5eLq5d8=",
   "_location": "/elliptic",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "elliptic@6.4.0",
+    "raw": "elliptic@^6.0.0",
     "name": "elliptic",
     "escapedName": "elliptic",
-    "rawSpec": "6.4.0",
+    "rawSpec": "^6.0.0",
     "saveSpec": null,
-    "fetchSpec": "6.4.0"
+    "fetchSpec": "^6.0.0"
   },
   "_requiredBy": [
     "/browserify-sign",
     "/create-ecdh"
   ],
   "_resolved": "https://registry.npmjs.org/elliptic/-/elliptic-6.4.0.tgz",
-  "_spec": "6.4.0",
-  "_where": "/home/anahi/Documents/Git/Curso-Avanzado-NodeJS/platziverse-web",
+  "_shasum": "cac9af8762c85836187003c8dfe193e5e2eae5df",
+  "_spec": "elliptic@^6.0.0",
+  "_where": "/home/anahi/Documents/Git/Curso Avanzado Node/platziverse-web/node_modules/browserify-sign",
   "author": {
     "name": "Fedor Indutny",
     "email": "fedor@indutny.com"
@@ -41185,6 +41177,7 @@ module.exports={
   "bugs": {
     "url": "https://github.com/indutny/elliptic/issues"
   },
+  "bundleDependencies": false,
   "dependencies": {
     "bn.js": "^4.4.0",
     "brorand": "^1.0.1",
@@ -41194,6 +41187,7 @@ module.exports={
     "minimalistic-assert": "^1.0.0",
     "minimalistic-crypto-utils": "^1.0.0"
   },
+  "deprecated": false,
   "description": "EC cryptography",
   "devDependencies": {
     "brfs": "^1.4.3",
@@ -97460,35 +97454,30 @@ Store.prototype.getAllCookies = function(cb) {
 
 },{}],532:[function(require,module,exports){
 module.exports={
-  "_args": [
-    [
-      "tough-cookie@2.3.3",
-      "/home/anahi/Documents/Git/Curso-Avanzado-NodeJS/platziverse-web"
-    ]
-  ],
-  "_from": "tough-cookie@2.3.3",
+  "_from": "tough-cookie@~2.3.3",
   "_id": "tough-cookie@2.3.3",
   "_inBundle": false,
   "_integrity": "sha1-C2GKVWW23qkL80JdBNVe3EdadWE=",
   "_location": "/tough-cookie",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "tough-cookie@2.3.3",
+    "raw": "tough-cookie@~2.3.3",
     "name": "tough-cookie",
     "escapedName": "tough-cookie",
-    "rawSpec": "2.3.3",
+    "rawSpec": "~2.3.3",
     "saveSpec": null,
-    "fetchSpec": "2.3.3"
+    "fetchSpec": "~2.3.3"
   },
   "_requiredBy": [
     "/request",
     "/request-promise-native"
   ],
   "_resolved": "https://registry.npmjs.org/tough-cookie/-/tough-cookie-2.3.3.tgz",
-  "_spec": "2.3.3",
-  "_where": "/home/anahi/Documents/Git/Curso-Avanzado-NodeJS/platziverse-web",
+  "_shasum": "0b618a5565b6dea90bf3425d04d55edc475a7561",
+  "_spec": "tough-cookie@~2.3.3",
+  "_where": "/home/anahi/Documents/Git/Curso Avanzado Node/platziverse-web/node_modules/request",
   "author": {
     "name": "Jeremy Stashewsky",
     "email": "jstashewsky@salesforce.com"
@@ -97496,6 +97485,7 @@ module.exports={
   "bugs": {
     "url": "https://github.com/salesforce/tough-cookie/issues"
   },
+  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Alexander Savin"
@@ -97519,6 +97509,7 @@ module.exports={
   "dependencies": {
     "punycode": "^1.4.1"
   },
+  "deprecated": false,
   "description": "RFC6265 Cookies and Cookie Jar for node.js",
   "devDependencies": {
     "async": "^1.4.2",

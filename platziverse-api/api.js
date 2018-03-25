@@ -79,15 +79,16 @@ api.get('/metrics/:uuid/:type', async (req, res, next) => {
   const { uuid, type } = req.params
   debug(`request to /metrics/${uuid}/${type}`)
   let metrics = []
-
   try {
-    metrics = await Metric.findByTypeAgentUuid(uuid)
-  } catch (error) {
-    return next(error)
+    metrics = await Metric.findByTypeAgentUuid(type, uuid)
+  } catch (e) {
+    return next(e)
   }
+
   if (!metrics || metrics.length === 0) {
-    return next(new Error(`Metrics ${type} not found agent with uuid ${uuid}`))
+    return next(new Error(`Metrics (${type}) not found for agent with uuid ${uuid}`))
   }
+
   res.send(metrics)
 })
 
