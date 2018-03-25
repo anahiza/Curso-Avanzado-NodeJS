@@ -39,6 +39,7 @@ platziverse-db/node_modules/
 platziverse-api/node_modules/
 platziverse-web/node_modules/
 platziverse-mqtt/node_modules/
+platziverse-cli/node_modules/
 
 # Typescript v1 declaration files
 typings/

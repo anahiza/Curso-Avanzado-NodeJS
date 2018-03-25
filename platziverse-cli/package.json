@@ -1,0 +1,17 @@
+{
+  "name": "platziverse-cli",
+  "version": "1.0.0",
+  "description": "A simple IoT platform - CLI",
+  "bin": "platziverse.js",
+  "private": true,
+  "scripts": {
+    "lint": "standard"
+  },
+  "author": "ISC Anahi Zentella",
+  "license": "MIT",
+  "dependencies": {
+    "args": "^3.0.8",
+    "minimist": "^1.2.0",
+    "standard": "^11.0.1"
+  }
+}
