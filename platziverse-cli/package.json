@@ -11,6 +11,8 @@
   "license": "MIT",
   "dependencies": {
     "args": "^3.0.8",
+    "blessed": "^0.1.81",
+    "blessed-contrib": "^4.8.5",
     "minimist": "^1.2.0",
     "standard": "^11.0.1"
   }
