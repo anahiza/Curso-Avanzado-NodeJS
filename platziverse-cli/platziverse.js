@@ -5,6 +5,7 @@
 const blessed = require('blessed')
 const contrib = require('blessed-contrib')
 const PlatziverseAgent = require('platziverse-agent')
+const moment = require('moment')
 
 const screen = blessed.screen()
 const agent = new PlatziverseAgent()
@@ -37,6 +38,40 @@ agent.on('agent/connected', payload => {
   renderData()
 })
 
+agent.on('agent/disconnected', payload => {
+  const { uuid } = payload.agent
+  if (agents.has(uuid)) {
+    agents.delete(uuid)
+    agentsMetrics.delete(uuid)
+  }
+  renderData()
+})
+
+agent.on('agent/message', payload => {
+  const { uuid } = payload.agent
+  const { timestamp } = payload
+  if (!agents.has(uuid)) {
+    agents.set(uuid, payload.agent)
+    agentsMetrics.set(uuid, {})
+  }
+  const metrics = agentsMetrics.get(uuid)
+  payload.metrics.forEach(m => {
+    const {type, value} = m
+    if (!Array.isArray(metrics[type])) {
+      metrics[type] = []
+    }
+    const length = metrics[type].length
+    if (length >= 20) {
+      metrics[type].shift()
+    }
+    metrics[type].push({
+        value,
+        timestamp: moment(timestamp).format('HH:mm:ss')
+      })
+  })
+  renderData()
+})
+
 function renderData () {
   const treeData = {}
   for (let [uuid, val] of agents) {
@@ -46,6 +81,16 @@ function renderData () {
       agent: true,
       children: {}
     }
+    const metrics = agentsMetrics.get(uuid)
+    Object.keys(metrics).forEach(type => {
+      const metric = {
+        uuid,
+        type,
+        metric: true
+      }
+      const metricName = `${type}`
+      treeData[title].children[metricName] = metricName
+    })
   }
   tree.setData({
     extended: true,
@@ -57,5 +102,7 @@ function renderData () {
 screen.key(['escape', 'q', 'C-c'], (ch, key) => {
   process.exit(0)
 })
+
 agent.connect()
+tree.focus()
 screen.render()

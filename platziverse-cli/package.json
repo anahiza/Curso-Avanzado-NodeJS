@@ -14,7 +14,8 @@
     "blessed": "^0.1.81",
     "blessed-contrib": "^4.8.5",
     "minimist": "^1.2.0",
-    "standard": "^11.0.1",
-    "platziverse-agent": "file:../platziverse-agent"
+    "moment": "^2.21.0",
+    "platziverse-agent": "file:../platziverse-agent",
+    "standard": "^11.0.1"
   }
 }
