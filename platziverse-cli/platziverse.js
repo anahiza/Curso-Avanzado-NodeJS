@@ -11,6 +11,11 @@ const screen = blessed.screen()
 const agent = new PlatziverseAgent()
 const agents = new Map()
 const agentsMetrics = new Map()
+let extended = []
+let selected = {
+  uuid: null,
+  type: null
+}
 
 const grid = new contrib.grid({
   rows: 1,
@@ -65,21 +70,37 @@ agent.on('agent/message', payload => {
       metrics[type].shift()
     }
     metrics[type].push({
-        value,
-        timestamp: moment(timestamp).format('HH:mm:ss')
-      })
+      value,
+      timestamp: moment(timestamp).format('HH:mm:ss')
+    })
   })
   renderData()
 })
 
+tree.on('select', node => {
+  const { uuid } = node
+  if (node.agent) {
+    node.extended ? extended.push(uuid) : extended = extended.filter(e => e === uuid)
+    selected.uuid = null
+    selected.type = null
+    return
+  }
+
+  selected.uuid = uuid
+  selected.type = node.type
+  renderMetric()
+})
+
 function renderData () {
   const treeData = {}
+  let idx = 0
   for (let [uuid, val] of agents) {
     const title = `${val.name} - (${val.pid})`
     treeData[title] = {
       uuid,
       agent: true,
-      children: {}
+      children: {},
+      extended: extended.includes(uuid)
     }
     const metrics = agentsMetrics.get(uuid)
     Object.keys(metrics).forEach(type => {
@@ -88,7 +109,7 @@ function renderData () {
         type,
         metric: true
       }
-      const metricName = `${type}`
+      const metricName = `${type} ${" ".repeat(100)} ${idx++}`
       treeData[title].children[metricName] = metricName
     })
   }
@@ -97,6 +118,28 @@ function renderData () {
     children: treeData
   })
 
+  renderMetric()
+}
+
+function renderMetric () {
+  if (!selected.uuid && !selected.type) {
+    line.setData([{
+      x: [],
+      y: [],
+      title: ''
+    }])
+    screen.render()
+    return
+  }
+  const metrics = agentsMetrics.get(selected.uuid)
+  const values = metrics[selected.type]
+  const series = [{
+    title: selected.type,
+    x: values.map(v => v.timestamp).slice(-10),
+    y: values.map(v => v.value).slice(-10)
+  }]
+
+  line.setData(series)
   screen.render()
 }
 screen.key(['escape', 'q', 'C-c'], (ch, key) => {
