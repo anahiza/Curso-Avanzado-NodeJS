@@ -6,6 +6,9 @@ const defaults = require('defaults')
 const setupAgent = require('./lib/agent')
 const setupḾetric = require('./lib/metric')
 
+if (process.env.NODE_ENV != 'production')
+require('longjohn')
+
 module.exports = async function (config) {
   config = defaults(config, {
     dialect: 'sqlite',

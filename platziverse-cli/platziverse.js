@@ -109,8 +109,8 @@ function renderData () {
         type,
         metric: true
       }
-      const metricName = `${type} ${" ".repeat(100)} ${idx++}`
-      treeData[title].children[metricName] = metricName
+      const metricName = `${type} ${' '.repeat(100)} ${idx++}`
+      treeData[title].children[metricName] = metric
     })
   }
   tree.setData({
@@ -135,8 +135,8 @@ function renderMetric () {
   const values = metrics[selected.type]
   const series = [{
     title: selected.type,
-    x: values.map(v => v.timestamp).slice(-10),
-    y: values.map(v => v.value).slice(-10)
+    x: values.map(v => v.timestamp).slice(-20),
+    y: values.map(v => v.value).slice(-20)
   }]
 
   line.setData(series)
