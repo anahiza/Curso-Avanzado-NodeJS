@@ -4,18 +4,12 @@ const db = require('./')
 const inquirer = require('inquirer')
 const chalk = require('chalk')
 const debug = require('debug')('platziverse:db:setup')
-let automaticSetup = false
 
-// const prompt =
-inquirer.createPromptModule()
+const minimist = require('minimist')
+const args = minimist(process.argv)
+const prompt = inquirer.createPromptModule()
 async function setup () {
-  process.argv.forEach(e => {
-    console.log(e)
-    if (e === '--autoSetup') {
-      automaticSetup = true
-    }
-  })
-  if (automaticSetup === false) {
+  if (!args.yes) {
     const answer = await inquirer.prompt(
       [
         {
